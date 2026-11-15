@@ -1,0 +1,18 @@
+
+{
+  "name": "FINORA - Personal Finance Manager",
+  "short_name": "FINORA",
+  "description": "مدیریت شخصی درآمد، هزینه، کارت‌های بانکی و پس‌انداز",
+  "lang": "fa",
+  "dir": "rtl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0d0d0d",
+  "theme_color": "#0d0d0d",
+  "categories": [
+    "finance",
+    "productivity"
+  ]
+}
