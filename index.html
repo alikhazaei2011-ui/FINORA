@@ -1,0 +1,334 @@
+
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#11100E">
+  <meta name="description" content="FINORA - Smart Personal Finance">
+
+  <title>FINORA | مدیریت مالی هوشمند</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="app-container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <div class="brand">
+        <div class="brand-logo">F</div>
+        <div class="brand-name">
+          <h2>FINORA</h2>
+          <span>SMART FINANCE</span>
+        </div>
+      </div>
+
+      <div class="menu-title">منوی اصلی</div>
+
+      <nav class="navigation">
+
+        <button class="nav-item active" data-page="dashboard">
+          <span>◈</span>
+          <span>داشبورد</span>
+        </button>
+
+        <button class="nav-item" data-page="transactions">
+          <span>⇄</span>
+          <span>تراکنش‌ها</span>
+        </button>
+
+        <button class="nav-item" data-page="cards">
+          <span>▣</span>
+          <span>کارت‌های من</span>
+        </button>
+
+        <button class="nav-item" data-page="savings">
+          <span>◇</span>
+          <span>پس‌انداز</span>
+        </button>
+
+        <button class="nav-item" data-page="reports">
+          <span>▥</span>
+          <span>گزارش‌ها</span>
+        </button>
+
+      </nav>
+
+      <div class="sidebar-bottom">
+        <button class="nav-item" data-page="settings">
+          <span>⚙</span>
+          <span>تنظیمات</span>
+        </button>
+
+        <div class="sidebar-footer">
+          <span class="gold-dot"></span>
+          FINORA GOLD EDITION
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+      <header class="topbar">
+
+        <div class="page-heading">
+          <span class="eyebrow">PERSONAL FINANCE</span>
+          <h1 id="page-title">داشبورد</h1>
+        </div>
+
+        <div class="topbar-actions">
+          <div class="user-avatar">A</div>
+        </div>
+
+      </header>
+
+      <!-- DASHBOARD -->
+      <section class="page active" id="dashboard">
+
+        <div class="welcome-section">
+          <div>
+            <span class="muted-text">خوش آمدی به FINORA</span>
+            <h2>مدیریت هوشمند پولت</h2>
+          </div>
+
+          <span class="gold-label">GOLD MEMBER</span>
+        </div>
+
+        <div class="balance-card">
+
+          <div class="balance-top">
+            <span>موجودی کل حساب</span>
+            <span class="balance-icon">✦</span>
+          </div>
+
+          <div class="balance-amount" id="total-balance">
+            ۰
+            <small>واحد پول</small>
+          </div>
+
+          <div class="balance-bottom">
+            <span>موجودی فعلی</span>
+            <span>FINORA ACCOUNT</span>
+          </div>
+
+        </div>
+
+        <div class="stats-grid">
+
+          <div class="stat-card">
+            <div class="stat-icon income-icon">↗</div>
+            <span>درآمدها</span>
+            <strong id="total-income">۰</strong>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon expense-icon">↙</div>
+            <span>هزینه‌ها</span>
+            <strong id="total-expense">۰</strong>
+          </div>
+
+        </div>
+
+        <div class="quick-actions">
+
+          <h3>دسترسی سریع</h3>
+
+          <div class="quick-grid">
+
+            <button class="quick-btn" data-action="income">
+              <span>＋</span>
+              <small>ثبت درآمد</small>
+            </button>
+
+            <button class="quick-btn" data-action="expense">
+              <span>－</span>
+              <small>ثبت هزینه</small>
+            </button>
+
+            <button class="quick-btn" data-page="cards">
+              <span>▣</span>
+              <small>کارت‌های من</small>
+            </button>
+
+            <button class="quick-btn" data-page="savings">
+              <span>◇</span>
+              <small>پس‌انداز</small>
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="recent-section">
+          <h3>آخرین تراکنش‌ها</h3>
+          <div id="recent-transactions"></div>
+        </div>
+
+      </section>
+
+      <!-- TRANSACTIONS -->
+      <section class="page" id="transactions">
+
+        <div class="section-header">
+          <div>
+            <span class="eyebrow">ACTIVITY</span>
+            <h2>تراکنش‌ها</h2>
+          </div>
+
+          <button class="gold-button" data-action="income">
+            + ثبت تراکنش
+          </button>
+        </div>
+
+        <div class="transaction-filters">
+          <button class="filter-btn active" data-filter="all">همه</button>
+          <button class="filter-btn" data-filter="income">درآمد</button>
+          <button class="filter-btn" data-filter="expense">هزینه</button>
+        </div>
+
+        <div id="all-transactions"></div>
+
+      </section>
+
+      <!-- BANK CARDS -->
+      <section class="page" id="cards">
+
+        <div class="section-header">
+          <div>
+            <span class="eyebrow">MY WALLET</span>
+            <h2>کارت‌های بانکی</h2>
+          </div>
+
+          <button class="gold-button" data-action="add-card">
+            + افزودن کارت
+          </button>
+        </div>
+
+        <div id="cards-container" class="cards-grid"></div>
+
+      </section>
+
+      <!-- SAVINGS -->
+      <section class="page" id="savings">
+
+        <div class="section-header">
+          <div>
+            <span class="eyebrow">FINANCIAL GOALS</span>
+            <h2>پس‌انداز من</h2>
+          </div>
+
+          <button class="gold-button" data-action="add-goal">
+            + هدف جدید
+          </button>
+        </div>
+
+        <div id="savings-container"></div>
+
+      </section>
+
+      <!-- REPORTS -->
+      <section class="page" id="reports">
+
+        <div class="section-header">
+          <div>
+            <span class="eyebrow">FINANCIAL ANALYTICS</span>
+            <h2>گزارش‌های مالی</h2>
+          </div>
+        </div>
+
+        <div id="reports-container"></div>
+
+      </section>
+
+      <!-- SETTINGS -->
+      <section class="page" id="settings">
+
+        <div class="section-header">
+          <div>
+            <span class="eyebrow">PREFERENCES</span>
+            <h2>تنظیمات</h2>
+          </div>
+        </div>
+
+        <div class="settings-list">
+
+          <div class="setting-item">
+            <div>
+              <strong>واحد پول</strong>
+              <p>واحد نمایش مبالغ مالی</p>
+            </div>
+            <span>›</span>
+          </div>
+
+          <div class="setting-item">
+            <div>
+              <strong>اطلاعات حساب</strong>
+              <p>مدیریت حساب شخصی</p>
+            </div>
+            <span>›</span>
+          </div>
+
+          <div class="setting-item">
+            <div>
+              <strong>درباره FINORA</strong>
+              <p>نسخه و اطلاعات اپلیکیشن</p>
+            </div>
+            <span>›</span>
+          </div>
+
+        </div>
+
+      </section>
+
+    </main>
+
+    <!-- MOBILE NAVIGATION -->
+    <nav class="mobile-navigation">
+
+      <button class="mobile-nav-item active" data-page="dashboard">
+        <span>◈</span>
+        <small>خانه</small>
+      </button>
+
+      <button class="mobile-nav-item" data-page="transactions">
+        <span>⇄</span>
+        <small>تراکنش‌ها</small>
+      </button>
+
+      <button class="mobile-nav-item" data-page="cards">
+        <span>▣</span>
+        <small>کارت‌ها</small>
+      </button>
+
+      <button class="mobile-nav-item" data-page="savings">
+        <span>◇</span>
+        <small>پس‌انداز</small>
+      </button>
+
+      <button class="mobile-nav-item" data-page="settings">
+        <span>⚙</span>
+        <small>تنظیمات</small>
+      </button>
+
+    </nav>
+
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal-box" id="modal-box"></div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
