@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="theme-color" content="#0d0d0d">
+  <meta name="theme-color" content="#080808">
   <meta name="description" content="FINORA - مدیریت هوشمند امور مالی شخصی">
 
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -13,9 +13,17 @@
 
   <title>FINORA | مدیریت مالی هوشمند</title>
 
+  <!-- APP ICON -->
+  <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+  <link rel="apple-touch-icon" href="./icon-192.png">
+
+  <!-- PWA -->
   <link rel="manifest" href="./manifest.json">
+
+  <!-- STYLES -->
   <link rel="stylesheet" href="./style.css">
 
+  <!-- FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 </head>
@@ -24,12 +32,10 @@
 
 <div id="app">
 
-  <!-- SIDEBAR -->
   <aside class="sidebar">
 
     <div class="logo">
       <div class="logo-icon">F</div>
-
       <div>
         <h1>FINORA</h1>
         <p>SMART FINANCE</p>
@@ -37,7 +43,6 @@
     </div>
 
     <nav class="nav-menu">
-
       <button class="nav-item active" data-page="dashboard">
         <span class="nav-icon">◈</span>
         <span>داشبورد</span>
@@ -62,11 +67,9 @@
         <span class="nav-icon">▥</span>
         <span>گزارش‌ها</span>
       </button>
-
     </nav>
 
     <div style="margin-top:auto">
-
       <button class="nav-item" data-page="settings">
         <span class="nav-icon">⚙</span>
         <span>تنظیمات</span>
@@ -76,16 +79,13 @@
         <span style="color:#d6af62">●</span>
         FINORA GOLD EDITION
       </div>
-
     </div>
 
   </aside>
 
-  <!-- MAIN CONTENT -->
   <main class="main-content">
 
     <header class="topbar">
-
       <div>
         <h2 id="page-title">داشبورد</h2>
         <p>مدیریت هوشمند امور مالی</p>
@@ -94,12 +94,10 @@
       <div class="topbar-actions">
         <div class="avatar">A</div>
       </div>
-
     </header>
 
     <div class="pages-container">
 
-      <!-- DASHBOARD -->
       <section class="page active" id="dashboard">
 
         <div class="page-header">
@@ -107,33 +105,23 @@
             <h2>خوش آمدی به FINORA</h2>
             <p>مدیریت هوشمند پولت از همین‌جا شروع می‌شود.</p>
           </div>
-
           <span class="gold">GOLD MEMBER</span>
         </div>
 
-        <div class="panel" style="
-          background:linear-gradient(135deg,#332819,#17130e);
-          margin-bottom:20px;
-          padding:28px;
-        ">
-
+        <div class="panel" style="background:linear-gradient(135deg,#332819,#17130e);margin-bottom:20px;padding:28px">
           <div style="display:flex;justify-content:space-between;align-items:center">
             <span style="color:#d1c5ae">موجودی کل حساب</span>
             <span class="gold">✦ FINORA</span>
           </div>
 
-          <div class="stat-value gold" id="total-balance">
-            ۰ تومان
-          </div>
+          <div class="stat-value gold" id="total-balance">۰ تومان</div>
 
           <p style="color:#b9aa8d;font-size:11px;margin-top:15px">
             موجودی فعلی حساب شخصی
           </p>
-
         </div>
 
         <div class="stats-grid">
-
           <div class="stat-card">
             <div class="stat-label">مجموع درآمدها</div>
             <div class="stat-value green" id="total-income">۰ تومان</div>
@@ -143,145 +131,84 @@
             <div class="stat-label">مجموع هزینه‌ها</div>
             <div class="stat-value red" id="total-expense">۰ تومان</div>
           </div>
-
         </div>
 
         <div class="panel" style="margin-bottom:20px">
-
           <div class="panel-title">
             <h3>دسترسی سریع</h3>
           </div>
 
           <div style="display:flex;gap:10px;flex-wrap:wrap">
-
-            <button class="btn btn-primary" data-action="income">
-              ＋ ثبت درآمد
-            </button>
-
-            <button class="btn btn-secondary" data-action="expense">
-              － ثبت هزینه
-            </button>
-
-            <button class="btn btn-secondary" data-page="cards">
-              ▣ کارت‌های من
-            </button>
-
-            <button class="btn btn-secondary" data-page="savings">
-              ◇ پس‌انداز
-            </button>
-
+            <button class="btn btn-primary" data-action="income">＋ ثبت درآمد</button>
+            <button class="btn btn-secondary" data-action="expense">－ ثبت هزینه</button>
+            <button class="btn btn-secondary" data-page="cards">▣ کارت‌های من</button>
+            <button class="btn btn-secondary" data-page="savings">◇ پس‌انداز</button>
           </div>
-
         </div>
 
         <div class="panel">
-
           <div class="panel-title">
             <h3>آخرین تراکنش‌ها</h3>
             <span>RECENT ACTIVITY</span>
           </div>
-
           <div id="recent-transactions"></div>
-
         </div>
 
       </section>
 
-      <!-- TRANSACTIONS -->
       <section class="page" id="transactions">
-
         <div class="page-header">
-
           <div>
             <h2>تراکنش‌ها</h2>
             <p>مدیریت درآمدها و هزینه‌های حساب</p>
           </div>
-
-          <button class="btn btn-primary" data-action="income">
-            + ثبت درآمد
-          </button>
-
+          <button class="btn btn-primary" data-action="income">+ ثبت درآمد</button>
         </div>
 
         <div class="filters">
-
-          <button class="btn btn-secondary" data-filter="all">
-            همه
-          </button>
-
-          <button class="btn btn-secondary" data-filter="income">
-            درآمدها
-          </button>
-
-          <button class="btn btn-secondary" data-filter="expense">
-            هزینه‌ها
-          </button>
-
+          <button class="btn btn-secondary" data-filter="all">همه</button>
+          <button class="btn btn-secondary" data-filter="income">درآمدها</button>
+          <button class="btn btn-secondary" data-filter="expense">هزینه‌ها</button>
         </div>
 
         <div class="panel">
           <div id="all-transactions"></div>
         </div>
-
       </section>
 
-      <!-- BANK CARDS -->
       <section class="page" id="cards">
-
         <div class="page-header">
-
           <div>
             <h2>کارت‌های بانکی</h2>
             <p>مدیریت کارت‌های متصل به حساب شخصی</p>
           </div>
-
-          <button class="btn btn-primary" data-action="add-card">
-            + افزودن کارت
-          </button>
-
+          <button class="btn btn-primary" data-action="add-card">+ افزودن کارت</button>
         </div>
-
         <div id="cards-container"></div>
-
       </section>
 
-      <!-- SAVINGS -->
       <section class="page" id="savings">
-
         <div class="page-header">
-
           <div>
             <h2>پس‌انداز من</h2>
             <p>هدف‌های مالی خودت را دنبال کن</p>
           </div>
-
-          <button class="btn btn-primary" data-action="add-goal">
-            + هدف جدید
-          </button>
-
+          <button class="btn btn-primary" data-action="add-goal">+ هدف جدید</button>
         </div>
-
         <div id="savings-container"></div>
-
       </section>
 
-      <!-- REPORTS -->
       <section class="page" id="reports">
-
         <div class="page-header">
           <div>
             <h2>گزارش‌های مالی</h2>
             <p>بررسی وضعیت درآمد و هزینه‌ها</p>
           </div>
         </div>
-
         <div id="reports-container"></div>
-
       </section>
 
-      <!-- SETTINGS -->
       <section class="page" id="settings">
-
         <div class="page-header">
           <div>
             <h2>تنظیمات</h2>
@@ -290,7 +217,6 @@
         </div>
 
         <div class="panel">
-
           <div class="panel-title">
             <h3>درباره برنامه</h3>
           </div>
@@ -303,18 +229,13 @@
           <p class="gold" style="margin-top:15px">
             FINORA GOLD EDITION
           </p>
-
         </div>
-
       </section>
 
     </div>
-
   </main>
 
-  <!-- MOBILE NAVIGATION -->
   <nav class="mobile-nav">
-
     <button class="nav-item active" data-page="dashboard">
       <span class="nav-icon">◈</span>
       <span>خانه</span>
@@ -339,25 +260,18 @@
       <span class="nav-icon">⚙</span>
       <span>تنظیمات</span>
     </button>
-
   </nav>
 
 </div>
 
-<!-- MODAL -->
 <div class="modal-overlay" id="modal-overlay">
-
   <div class="modal" id="modal-box"></div>
-
 </div>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
-<!-- MAIN SCRIPT -->
 <script src="./script.js"></script>
 
-<!-- OFFLINE SUPPORT -->
 <script>
   if ("serviceWorker" in navigator) {
     window.addEventListener("load", () => {
