@@ -17,19 +17,34 @@
   <link rel="apple-touch-icon" href="./icon-192.png">
   <link rel="manifest" href="./manifest.json">
 
-  <!-- STYLES -->
   <link rel="stylesheet" href="./style.css">
 
-  <!-- FONT OPTIMIZATION -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- English Font: Outfit -->
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Persian Font: Vazirmatn -->
   <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
+  <style>
+    .nav-icon {
+      display: inline-grid;
+      place-items: center;
+      flex-shrink: 0;
+    }
+
+    .nav-icon svg {
+      width: 27px;
+      height: 27px;
+      display: block;
+      overflow: visible;
+      filter: drop-shadow(0 3px 3px rgba(0,0,0,.55));
+    }
+
+    .mobile-nav .nav-icon svg {
+      width: 28px;
+      height: 28px;
+    }
+  </style>
 </head>
 
 <body>
@@ -47,35 +62,98 @@
     </div>
 
     <nav class="nav-menu">
+
       <button class="nav-item active" data-page="dashboard">
-        <span class="nav-icon">◈</span>
+        <span class="nav-icon">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M5 21.5 24 6l19 15.5-4 4.5-3.5-2.8V41H12.5V23.2L9 26z" fill="#8e5d20"/>
+            <path d="M7 19 24 5l17 14-3.5 4L24 12 10.5 23z" fill="#ffe0a0"/>
+            <path d="M12 20.5 24 11l12 9.5V40H12z" fill="#d6a64f"/>
+            <path d="M19 25h10v15H19z" fill="#704719"/>
+            <path d="M21 27h6v13h-6z" fill="#f4d18b"/>
+            <path d="M12 20.5 24 11l12 9.5" fill="none" stroke="#fff0c5" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </span>
         <span>داشبورد</span>
       </button>
 
       <button class="nav-item" data-page="transactions">
-        <span class="nav-icon">⇄</span>
+        <span class="nav-icon">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M8 16h27l-6-6 4-4 13 12-13 12-4-4 6-6H8z" fill="#8d5a20"/>
+            <path d="M40 32H13l6 6-4 4L2 30l13-12 4 4-6 6h27z" fill="#a8742d"/>
+            <path d="M8 13h27l-6-6 3-3 13 12-13 12-3-3 6-6H8z" fill="#f5cf7d"/>
+            <path d="M40 35H13l6 6-3 3L3 32l13-12 3 3-6 6h27z" fill="#e6b45e"/>
+            <path d="M10 13h20M18 35h20" stroke="#fff0c4" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </span>
         <span>تراکنش‌ها</span>
       </button>
 
       <button class="nav-item" data-page="cards">
-        <span class="nav-icon">▣</span>
+        <span class="nav-icon">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <rect x="5" y="10" width="38" height="28" rx="6" fill="#80531e"/>
+            <rect x="5" y="7" width="38" height="28" rx="6" fill="#d4a34d" stroke="#ffe4a5" stroke-width="1.5"/>
+            <path d="M6 15h36v7H6z" fill="#80531e"/>
+            <path d="M6 13h36v6H6z" fill="#f3cf82"/>
+            <rect x="10" y="26" width="10" height="5" rx="1.5" fill="#fff0c5"/>
+            <path d="M29 28h9" stroke="#8b5b22" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M10 31h10" stroke="#fff0c5" stroke-width="1"/>
+          </svg>
+        </span>
         <span>کارت‌های من</span>
       </button>
 
       <button class="nav-item" data-page="savings">
-        <span class="nav-icon">◇</span>
+        <span class="nav-icon">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M10 20 7 15l7-2 5 5M31 18l5-5 5 3-3 8" fill="#b98236" stroke="#8d5a20" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M8 27c0-9 7-15 17-15s17 6 17 15-7 15-17 15S8 36 8 27z" fill="#a46c27"/>
+            <path d="M9 25c0-8 7-13 16-13s16 5 16 13-7 13-16 13S9 33 9 25z" fill="#e7b85e"/>
+            <path d="M13 37h7v5h-7zM29 37h7v5h-7z" fill="#8a571e"/>
+            <ellipse cx="36" cy="27" rx="6" ry="5" fill="#ffe1a0"/>
+            <circle cx="38" cy="27" r="1" fill="#80501c"/>
+            <circle cx="20" cy="23" r="2" fill="#4e351b"/>
+            <path d="M24 11V8" stroke="#fff0bd" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="24" cy="6" r="5" fill="#f8d78e" stroke="#9a6828" stroke-width="1.5"/>
+            <path d="M22 6h4M24 4v4" stroke="#9a6828" stroke-width="1"/>
+            <path d="M12 20c3-5 8-7 13-7" fill="none" stroke="#fff0c0" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </span>
         <span>پس‌انداز</span>
       </button>
 
       <button class="nav-item" data-page="reports">
-        <span class="nav-icon">▥</span>
+        <span class="nav-icon">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M7 8h34v33H7z" fill="#87591f"/>
+            <rect x="6" y="5" width="36" height="35" rx="5" fill="#d3a14b" stroke="#ffe2a0" stroke-width="1.5"/>
+            <path d="M11 32h26" stroke="#8c5b20" stroke-width="1.5"/>
+            <rect x="12" y="22" width="5" height="10" rx="1" fill="#fff0c5"/>
+            <rect x="21" y="15" width="5" height="17" rx="1" fill="#fff0c5"/>
+            <rect x="30" y="10" width="5" height="22" rx="1" fill="#fff0c5"/>
+            <path d="M12 20 22 13l9-5 6 2" fill="none" stroke="#8a571e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="22" cy="13" r="2" fill="#fff0c5"/>
+          </svg>
+        </span>
         <span>گزارش‌ها</span>
       </button>
+
     </nav>
 
     <div style="margin-top:auto">
       <button class="nav-item" data-page="settings">
-        <span class="nav-icon">⚙</span>
+        <span class="nav-icon">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M19 5h10l2 6 5 2 5-2 5 9-5 4v5l5 4-5 9-6-2-5 3-1 5H18l-1-6-5-3-6 2-5-9 5-4v-5l-5-4 5-9 6 2 5-3z" fill="#8b5a20" transform="translate(1 1) scale(.96)"/>
+            <path d="M19 5h10l2 6 5 2 5-2 5 9-5 4v5l5 4-5 9-6-2-5 3-1 5H18l-1-6-5-3-6 2-5-9 5-4v-5l-5-4 5-9 6 2 5-3z" fill="#d6a64f" transform="translate(2 1) scale(.92)"/>
+            <circle cx="24" cy="25" r="10" fill="#79501d"/>
+            <circle cx="24" cy="24" r="9" fill="#ffe0a0"/>
+            <circle cx="24" cy="24" r="5" fill="#9b6725"/>
+            <circle cx="24" cy="24" r="3" fill="#f2c873"/>
+          </svg>
+        </span>
         <span>تنظیمات</span>
       </button>
 
@@ -240,35 +318,98 @@
   </main>
 
   <nav class="mobile-nav">
+
     <button class="nav-item active" data-page="dashboard">
-      <span class="nav-icon">◈</span>
+      <span class="nav-icon">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M5 21.5 24 6l19 15.5-4 4.5-3.5-2.8V41H12.5V23.2L9 26z" fill="#8e5d20"/>
+          <path d="M7 19 24 5l17 14-3.5 4L24 12 10.5 23z" fill="#ffe0a0"/>
+          <path d="M12 20.5 24 11l12 9.5V40H12z" fill="#d6a64f"/>
+          <path d="M19 25h10v15H19z" fill="#704719"/>
+          <path d="M21 27h6v13h-6z" fill="#f4d18b"/>
+          <path d="M12 20.5 24 11l12 9.5" fill="none" stroke="#fff0c5" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </span>
       <span>خانه</span>
     </button>
 
     <button class="nav-item" data-page="transactions">
-      <span class="nav-icon">⇄</span>
+      <span class="nav-icon">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M8 16h27l-6-6 4-4 13 12-13 12-4-4 6-6H8z" fill="#8d5a20"/>
+          <path d="M40 32H13l6 6-4 4L2 30l13-12 4 4-6 6h27z" fill="#a8742d"/>
+          <path d="M8 13h27l-6-6 3-3 13 12-13 12-3-3 6-6H8z" fill="#f5cf7d"/>
+          <path d="M40 35H13l6 6-3 3L3 32l13-12 3 3-6 6h27z" fill="#e6b45e"/>
+          <path d="M10 13h20M18 35h20" stroke="#fff0c4" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </span>
       <span>تراکنش</span>
     </button>
 
     <button class="nav-item" data-page="cards">
-      <span class="nav-icon">▣</span>
+      <span class="nav-icon">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <rect x="5" y="10" width="38" height="28" rx="6" fill="#80531e"/>
+          <rect x="5" y="7" width="38" height="28" rx="6" fill="#d4a34d" stroke="#ffe4a5" stroke-width="1.5"/>
+          <path d="M6 15h36v7H6z" fill="#80531e"/>
+          <path d="M6 13h36v6H6z" fill="#f3cf82"/>
+          <rect x="10" y="26" width="10" height="5" rx="1.5" fill="#fff0c5"/>
+          <path d="M29 28h9" stroke="#8b5b22" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M10 31h10" stroke="#fff0c5" stroke-width="1"/>
+        </svg>
+      </span>
       <span>کارت‌ها</span>
     </button>
 
     <button class="nav-item" data-page="savings">
-      <span class="nav-icon">◇</span>
+      <span class="nav-icon">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M10 20 7 15l7-2 5 5M31 18l5-5 5 3-3 8" fill="#b98236" stroke="#8d5a20" stroke-width="1.5" stroke-linejoin="round"/>
+          <path d="M8 27c0-9 7-15 17-15s17 6 17 15-7 15-17 15S8 36 8 27z" fill="#a46c27"/>
+          <path d="M9 25c0-8 7-13 16-13s16 5 16 13-7 13-16 13S9 33 9 25z" fill="#e7b85e"/>
+          <path d="M13 37h7v5h-7zM29 37h7v5h-7z" fill="#8a571e"/>
+          <ellipse cx="36" cy="27" rx="6" ry="5" fill="#ffe1a0"/>
+          <circle cx="38" cy="27" r="1" fill="#80501c"/>
+          <circle cx="20" cy="23" r="2" fill="#4e351b"/>
+          <path d="M24 11V8" stroke="#fff0bd" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="24" cy="6" r="5" fill="#f8d78e" stroke="#9a6828" stroke-width="1.5"/>
+          <path d="M22 6h4M24 4v4" stroke="#9a6828" stroke-width="1"/>
+          <path d="M12 20c3-5 8-7 13-7" fill="none" stroke="#fff0c0" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </span>
       <span>پس‌انداز</span>
     </button>
 
     <button class="nav-item" data-page="reports">
-      <span class="nav-icon">▥</span>
+      <span class="nav-icon">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M7 8h34v33H7z" fill="#87591f"/>
+          <rect x="6" y="5" width="36" height="35" rx="5" fill="#d3a14b" stroke="#ffe2a0" stroke-width="1.5"/>
+          <path d="M11 32h26" stroke="#8c5b20" stroke-width="1.5"/>
+          <rect x="12" y="22" width="5" height="10" rx="1" fill="#fff0c5"/>
+          <rect x="21" y="15" width="5" height="17" rx="1" fill="#fff0c5"/>
+          <rect x="30" y="10" width="5" height="22" rx="1" fill="#fff0c5"/>
+          <path d="M12 20 22 13l9-5 6 2" fill="none" stroke="#8a571e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="22" cy="13" r="2" fill="#fff0c5"/>
+        </svg>
+      </span>
       <span>گزارش‌ها</span>
     </button>
 
     <button class="nav-item" data-page="settings">
-      <span class="nav-icon">⚙</span>
+      <span class="nav-icon">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <path d="M19 5h10l2 6 5 2 5-2 5 9-5 4v5l5 4-5 9-6-2-5 3-1 5H18l-1-6-5-3-6 2-5-9 5-4v-5l-5-4 5-9 6 2 5-3z" fill="#8b5a20" transform="translate(1 1) scale(.96)"/>
+          <path d="M19 5h10l2 6 5 2 5-2 5 9-5 4v5l5 4-5 9-6-2-5 3-1 5H18l-1-6-5-3-6 2-5-9 5-4v-5l-5-4 5-9 6 2 5-3z" fill="#d6a64f" transform="translate(2 1) scale(.92)"/>
+          <circle cx="24" cy="25" r="10" fill="#79501d"/>
+          <circle cx="24" cy="24" r="9" fill="#ffe0a0"/>
+          <circle cx="24" cy="24" r="5" fill="#9b6725"/>
+          <circle cx="24" cy="24" r="3" fill="#f2c873"/>
+        </svg>
+      </span>
       <span>تنظیمات</span>
     </button>
+
   </nav>
 
 </div>
