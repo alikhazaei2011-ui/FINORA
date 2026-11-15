@@ -1,12 +1,14 @@
 
-const CACHE_NAME = "finora-cache-v2";
+const CACHE_NAME = "finora-cache-v3";
 
 const APP_FILES = [
   "./",
   "./index.html",
   "./style.css",
   "./script.js",
-  "./manifest.json"
+  "./manifest.json",
+  "./icon-192.png",
+  "./icon-512.png"
 ];
 
 self.addEventListener("install", event => {
@@ -42,17 +44,21 @@ self.addEventListener("fetch", event => {
       .then(response => {
         if (response.ok && response.type === "basic") {
           const copy = response.clone();
+
           caches.open(CACHE_NAME).then(cache =>
             cache.put(event.request, copy)
           );
         }
+
         return response;
       })
       .catch(() =>
         caches.match(event.request).then(cached =>
-          cached || (event.request.mode === "navigate"
-            ? caches.match("./index.html")
-            : undefined)
+          cached || (
+            event.request.mode === "navigate"
+              ? caches.match("./index.html")
+              : undefined
+          )
         )
       )
   );
