@@ -1,5 +1,5 @@
 
-const CACHE_NAME = "finora-cache-v3";
+const CACHE_NAME = "finora-cache-v2";
 
 const APP_FILES = [
   "./",
