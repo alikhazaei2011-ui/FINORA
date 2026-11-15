@@ -20,7 +20,9 @@ let activeFilter = "all";
 function loadData() {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
-    return saved ? { ...defaultData, ...JSON.parse(saved) } : structuredClone(defaultData);
+    return saved
+      ? { ...defaultData, ...JSON.parse(saved) }
+      : structuredClone(defaultData);
   } catch {
     return structuredClone(defaultData);
   }
@@ -646,7 +648,7 @@ function renderSavings() {
     : emptyHTML("هنوز هدفی برای پس‌انداز نساخته‌ای", "🎯");
 }
 
-/* Reports */
+/* Reports - Income & Expense Chart */
 
 function renderReports() {
   const container = $("#reports-container");
@@ -655,29 +657,235 @@ function renderReports() {
   const totals = getTotals();
   const totalTransactions = data.transactions.length;
 
-  const incomeCount = data.transactions.filter(t => t.type === "income").length;
-  const expenseCount = data.transactions.filter(t => t.type === "expense").length;
+  const incomeCount = data.transactions.filter(
+    t => t.type === "income"
+  ).length;
+
+  const expenseCount = data.transactions.filter(
+    t => t.type === "expense"
+  ).length;
+
+  const oldPeriod = $("#chart-period")?.value || "30";
+  const days = Number(oldPeriod);
+
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const points = [];
+
+  for (let i = days - 1; i >= 0; i--) {
+    const date = new Date(today);
+    date.setDate(today.getDate() - i);
+
+    const key = [
+      date.getFullYear(),
+      String(date.getMonth() + 1).padStart(2, "0"),
+      String(date.getDate()).padStart(2, "0")
+    ].join("-");
+
+    const transactions = data.transactions.filter(
+      t => t.date === key
+    );
+
+    points.push({
+      label: date.toLocaleDateString("fa-IR", {
+        day: "numeric",
+        month: "short"
+      }),
+
+      income: transactions
+        .filter(t => t.type === "income")
+        .reduce((sum, t) => sum + Number(t.amount), 0),
+
+      expense: transactions
+        .filter(t => t.type === "expense")
+        .reduce((sum, t) => sum + Number(t.amount), 0)
+    });
+  }
+
+  const maxValue = Math.max(
+    1,
+    ...points.map(p => Math.max(p.income, p.expense))
+  );
+
+  const left = 35;
+  const right = 665;
+  const top = 20;
+  const bottom = 190;
+
+  const x = i =>
+    left + (i / Math.max(1, points.length - 1)) * (right - left);
+
+  const y = value =>
+    bottom - (value / maxValue) * (bottom - top);
+
+  const incomePath = points.map((p, i) =>
+    `${i === 0 ? "M" : "L"} ${x(i)} ${y(p.income)}`
+  ).join(" ");
+
+  const expensePath = points.map((p, i) =>
+    `${i === 0 ? "M" : "L"} ${x(i)} ${y(p.expense)}`
+  ).join(" ");
+
+  const labelIndexes = [
+    0,
+    Math.floor((points.length - 1) / 2),
+    points.length - 1
+  ];
 
   container.innerHTML = `
     <div class="stats-grid">
+
       <div class="stat-card">
         <div class="stat-label">مجموع درآمد</div>
-        <div class="stat-value green">${money(totals.income)}</div>
+        <div class="stat-value green">
+          ${money(totals.income)}
+        </div>
       </div>
 
       <div class="stat-card">
         <div class="stat-label">مجموع هزینه</div>
-        <div class="stat-value red">${money(totals.expense)}</div>
+        <div class="stat-value red">
+          ${money(totals.expense)}
+        </div>
       </div>
 
       <div class="stat-card">
         <div class="stat-label">مانده حساب</div>
-        <div class="stat-value gold">${money(totals.balance)}</div>
+        <div class="stat-value gold">
+          ${money(totals.balance)}
+        </div>
       </div>
+
+    </div>
+
+    <div class="panel" style="margin-bottom:20px">
+
+      <div style="
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        gap:12px;
+        flex-wrap:wrap;
+        margin-bottom:20px;
+      ">
+        <h3>نمودار درآمد و هزینه</h3>
+
+        <select id="chart-period" class="form-control"
+          style="width:auto;min-width:130px">
+
+          <option value="7" ${days === 7 ? "selected" : ""}>
+            ۷ روز اخیر
+          </option>
+
+          <option value="30" ${days === 30 ? "selected" : ""}>
+            ۳۰ روز اخیر
+          </option>
+
+          <option value="365" ${days === 365 ? "selected" : ""}>
+            یک سال اخیر
+          </option>
+
+        </select>
+      </div>
+
+      <div style="
+        display:flex;
+        gap:20px;
+        margin-bottom:18px;
+        font-size:13px;
+      ">
+        <span style="color:#45c878">● درآمد</span>
+        <span style="color:#ef5555">● هزینه</span>
+      </div>
+
+      <div style="width:100%;overflow:hidden">
+
+        <svg viewBox="0 0 700 225"
+          role="img"
+          aria-label="نمودار خطی درآمد و هزینه"
+          style="width:100%;height:auto;display:block">
+
+          ${[0, 1, 2, 3, 4].map(i => {
+            const gy = top + i * ((bottom - top) / 4);
+
+            return `
+              <line
+                x1="${left}"
+                y1="${gy}"
+                x2="${right}"
+                y2="${gy}"
+                stroke="rgba(255,255,255,.09)"
+                stroke-dasharray="4 5"
+              />
+            `;
+          }).join("")}
+
+          <path
+            d="${incomePath}"
+            fill="none"
+            stroke="#45c878"
+            stroke-width="3.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+          <path
+            d="${expensePath}"
+            fill="none"
+            stroke="#ef5555"
+            stroke-width="3.5"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+          ${points.map((p, i) => `
+            <circle
+              cx="${x(i)}"
+              cy="${y(p.income)}"
+              r="2.5"
+              fill="#45c878"
+            />
+
+            <circle
+              cx="${x(i)}"
+              cy="${y(p.expense)}"
+              r="2.5"
+              fill="#ef5555"
+            />
+          `).join("")}
+
+          ${labelIndexes.map(i => `
+            <text
+              x="${x(i)}"
+              y="215"
+              fill="#aaa"
+              font-size="12"
+              text-anchor="middle"
+            >${points[i].label}</text>
+          `).join("")}
+
+        </svg>
+      </div>
+
+      ${totalTransactions === 0 ? `
+        <p style="
+          color:var(--muted);
+          text-align:center;
+          font-size:12px;
+          margin-top:12px;
+        ">
+          هنوز تراکنشی ثبت نشده است.
+        </p>
+      ` : ""}
+
     </div>
 
     <div class="panel">
-      <h3 style="margin-bottom:20px">خلاصه تراکنش‌ها</h3>
+
+      <h3 style="margin-bottom:20px">
+        خلاصه تراکنش‌ها
+      </h3>
 
       <div class="transaction-item">
         <span>تعداد کل تراکنش‌ها</span>
@@ -686,15 +894,22 @@ function renderReports() {
 
       <div class="transaction-item">
         <span>تعداد درآمدها</span>
-        <strong class="green">${incomeCount.toLocaleString("fa-IR")}</strong>
+        <strong class="green">
+          ${incomeCount.toLocaleString("fa-IR")}
+        </strong>
       </div>
 
       <div class="transaction-item">
         <span>تعداد هزینه‌ها</span>
-        <strong class="red">${expenseCount.toLocaleString("fa-IR")}</strong>
+        <strong class="red">
+          ${expenseCount.toLocaleString("fa-IR")}
+        </strong>
       </div>
+
     </div>
   `;
+
+  $("#chart-period")?.addEventListener("change", renderReports);
 }
 
 /* Settings */
